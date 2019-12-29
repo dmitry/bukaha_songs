@@ -32,4 +32,6 @@
 yarn-debug.log*
 .yarn-integrity
 
+/public/system
+
 /.idea/

@@ -3,6 +3,8 @@ class Song < ApplicationRecord
 
   validates :title, presence: true, uniqueness: true
 
+  scope :title_like, -> query { where(arel_table[:title].matches("%#{query}%")) }
+
   # normalization
   def text=(text)
     if text.present?

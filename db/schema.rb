@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_29_170555) do
+ActiveRecord::Schema.define(version: 2019_12_29_173944) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2019_12_29_170555) do
     t.text "audio_data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "identifier", default: "", null: false
+    t.index ["identifier"], name: "index_compositions_on_identifier", unique: true
     t.index ["song_id"], name: "index_compositions_on_song_id"
   end
 
