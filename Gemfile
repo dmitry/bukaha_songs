@@ -14,6 +14,7 @@ gem 'shrine'
 gem 'streamio-ffmpeg'
 
 gem 'grape'
+gem 'grape-entity'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
 

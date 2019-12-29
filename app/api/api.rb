@@ -10,7 +10,8 @@ class API < Grape::API
       requires :title, type: String
     end
     get do
-      Song.title_like(params[:title])
+      songs = Song.title_like(params[:title])
+      present songs, with: API::Entities::Song
     end
 
     params do
@@ -54,4 +55,33 @@ class API < Grape::API
   end
 
   add_swagger_documentation
+
+
+  module Entities
+    class Song < Grape::Entity
+      expose :id
+      expose :title
+      expose :text
+      expose :chords?, as: :has_chords
+      expose :lyrics
+      expose :lyrics_with_chords
+
+      expose :compositions, using: 'API::Entities::Composition'
+    end
+    class Composition < Grape::Entity
+      expose :id
+      expose :identifier
+      #expose :audio_url
+      expose :authors, using: 'API::Entities::Author'
+      expose :instruments, using: 'API::Entities::Instrument'
+    end
+    class Author < Grape::Entity
+      expose :id
+      expose :name
+    end
+    class Instrument < Grape::Entity
+      expose :id
+      expose :name
+    end
+  end
 end

@@ -4,7 +4,6 @@ class AudioUploader < Shrine
   MAX_FILESIZE = 20.megabytes
   MIME_TYPES =  # validate type
 
-  #plugin :pretty_location
   plugin :instrumentation
   plugin :validation_helpers
   plugin :cached_attachment_data

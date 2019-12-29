@@ -12,22 +12,24 @@ class Song < ApplicationRecord
     end
   end
 
-  def has_chords?
-    text.include?('[')
+  def chords?
+    text.present? && text.include?('[')
   end
 
   def lyrics
-    if text
+    if text.present?
       text.gsub(/\[[^\]+]\]/, '')
     end
   end
 
   def lyrics_with_chords
-    if has_chords?
-      # TODO: add here logic that makes chords above the lyrics text
-      lyrics
-    else
-      lyrics
+    if text.present?
+      if chords?
+        # TODO: add here logic that makes chords above the lyrics text
+        lyrics
+      else
+        lyrics
+      end
     end
   end
 end
