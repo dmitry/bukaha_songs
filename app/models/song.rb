@@ -1,7 +1,7 @@
 class Song < ApplicationRecord
-  has_many :compositions
+  has_many :compositions, dependent: :destroy
 
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
 
   # normalization
   def text=(text)
